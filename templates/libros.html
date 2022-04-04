@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block titulo %} Listado de Libros {% endblock %}
+{% block contenido %}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Listado de Libros</h3>
+            <a href="{{url_for('formulario_agregar_libro')}}" class="button is-success">Agregar</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                    <tr>
+                        <td>{{libro[1]}}</td>
+                        <td>{{libro[2]}}</td>
+                        <td>{{libro[3]}}</td>
+                        <td>
+                            <!-- Id libro libro[0] -->
+                            <a href="{{url_for('editar_libro', id=libro[0])}}" class="button is-info">Editar</a>
+                        </td>
+                        <td>
+                            <form action="{{url_for('eliminar_libro')}}" method="POST">
+                                <input type="hidden" name="id" value="{{libro[0]}}">
+                                <button class="button is-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

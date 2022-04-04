@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block titulo %} Editar Libro {% endblock %}
+{% block contenido %}
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Editar Libro</h3>
+            <form action="{{url_for('actualizar_libro')}}" method="post">
+                <!-- Id Oculto -->
+                <input type="hidden" name="id" value="{{libro[0]}}">
+                <label for="nombre">Nombre:</label>
+                <input value="{{libro[1]}}" required type="text" class="input" placeholder="Nombre" name="nombre" id="nombre">
+                <label for="descripcion">Descripción</label>
+                <input value="{{libro[2]}}" required type="text" class="input" placeholder="Descripción" name="descripcion" id="descripcion">
+                <label for="precio">Precio</label>
+                <input value="{{libro[3]}}" required type="number" step="0.01" class="input" placeholder="Precio" name="precio" id="precio">
+                <button type="submit" class="button is-success mt-2">Guardar</button>
+                <a href="{{url_for('libros')}}" class="button is-primary mt-2">Volver</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
